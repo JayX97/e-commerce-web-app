@@ -7,9 +7,6 @@ import { useProductsStore } from './stores/ProductsStore';
 
 function App() {
   const cart = useCartStore((state) => state.cart);
-  const addItem = useCartStore((state) => state.addItem);
-  const removeItem = useCartStore((state) => state.removeItem);
-  const emptyCart = useCartStore((state) => state.emptyCart);
   const products = useProductsStore((state) => state.products);
   const fillProducts = useProductsStore((state) => state.fillProducts);
 
@@ -40,11 +37,10 @@ function App() {
       </div>
       <div className='w-screen flex p-3 flex-col items-center'>
         <h2 className='text-2xl w-full text-center pt-5 pb-8 border-b border-gray-400'>Welcome to JayMart!</h2>
-        <Product />
-        <Product />
-        <Product />
-        <Product />
-        <Product />
+        {products.map((product) => {
+          return <Product product={product} />
+        })
+        }
       </div>
       <footer className='w-screen text-center p-5'>&copy;2026 Jason Fernandez. All rights reserved.</footer>
     </div>
